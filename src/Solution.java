@@ -237,4 +237,27 @@ public class Solution {
         String resultWord = "amazon";
         System.out.println(matchWord(searchWord, resultWord));
     }
+
+    // construct string
+    public int constructStr(String s, String t) {
+        HashMap<Character, Integer> mapS = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            mapS.put(s.charAt(i), mapS.getOrDefault(s.charAt(i), 0) + 1);
+        }
+        HashMap<Character, Integer> mapT = new HashMap<>();
+        for (int i = 0; i < t.length(); i++) {
+            mapT.put(t.charAt(i), mapT.getOrDefault(t.charAt(i), 0) + 1);
+        }
+        int res = Integer.MAX_VALUE;
+        for (Map.Entry<Character, Integer> entry : mapT.entrySet()) {
+            res = Math.min(res, mapS.get(entry.getKey()) / entry.getValue());
+        }
+        return res;
+    }
+
+    public void testConstructStr() {
+        String s = "mononom";
+        String t = "mon";
+        System.out.println(constructStr(s, t));
+    }
 }
