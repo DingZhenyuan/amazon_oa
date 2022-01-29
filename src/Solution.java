@@ -260,4 +260,63 @@ public class Solution {
         String t = "mon";
         System.out.println(constructStr(s, t));
     }
+
+    // max sum
+    public int maxSum(int k, int[] nums) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int count = 0;
+        int sum = 0;
+        for (int i = 0; i < k; i++) {
+            if (map.containsKey(nums[i])) {
+                int value = map.get(nums[i]);
+                if (value == 1) {
+                    count++;
+                }
+                map.put(nums[i], value + 1);
+            } else {
+                map.put(nums[i], 1);
+            }
+            sum += nums[i];
+        }
+
+        int res = count == 0 ? sum : Integer.MIN_VALUE;
+
+        for (int i = k; i < nums.length; i++) {
+            // left
+            int leftKey = nums[i - k];
+            int leftValue = map.get(leftKey);
+            if (leftValue == 1) {
+                map.remove(leftKey);
+            } else if (leftValue == 2) {
+                count--;
+                map.put(nums[leftKey], 1);
+            } else {
+                map.put(nums[leftKey], leftValue - 1);
+            }
+            sum -= leftKey;
+
+            // right
+            int rightKey = nums[i];
+            if (!map.containsKey(rightKey)) {
+                map.put(rightKey, 1);
+            } else {
+                int rightValue = map.get(rightKey);
+                if (rightValue == 1) {
+                    count++;
+                }
+                map.put(rightKey, rightValue);
+            }
+            sum += rightKey;
+
+            if (count == 0)
+                res = Math.max(res, sum);
+        }
+        return res;
+    }
+
+    public void testMaxSum() {
+        int[] nums = new int[]{1, 2, 3, 4};
+        int k = 2;
+        System.out.println(maxSum(k, nums));
+    }
 }

@@ -9,6 +9,7 @@ public class Main {
 //        solution.testMoveData();
 //        solution.testSignAPI();
 //        solution.testMatchWord();
-        solution.testConstructStr();
+//        solution.testConstructStr();
+        solution.testMaxSum();
     }
 }
