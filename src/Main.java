@@ -3,6 +3,7 @@ public class Main {
 
         Solution solution = new Solution();
 //        solution.testGetMinTime();
-        solution.testGetPair();
+//        solution.testGetPair();
+        solution.testCanDeliver();
     }
 }

@@ -1,7 +1,4 @@
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class Solution {
 
@@ -74,5 +71,29 @@ public class Solution {
         };
         int[] res = getPair(11000, forward, backward);
         System.out.println(res[0] + "-" + res[1]);
+    }
+
+    // deliver goods
+    public int canDeliver(int[] input) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i : input) {
+            map.put(i, map.getOrDefault(i, 0) + 1);
+        }
+        int count = 0;
+        for (int value : map.values()) {
+            if (value == 1)
+                return -1;
+            count += value / 3;
+            if (value % 3 != 0)
+                count++;
+        }
+        return count;
+    }
+
+    public void testCanDeliver() {
+        int[] input1 = new int[]{2, 2, 3, 3, 4};
+        int[] input2 = new int[]{2, 2, 3, 3, 3};
+        System.out.println(canDeliver(input1));
+        System.out.println(canDeliver(input2));
     }
 }
