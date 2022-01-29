@@ -133,4 +133,35 @@ public class Solution {
         };
         System.out.println(maxGreyness(g));
     }
+
+    // move data
+    public int[] moveData(int[] locations, int[] moveFrom, int[] moveTo) {
+        HashSet<Integer> set = new HashSet<>();
+        for (int l : locations) {
+            set.add(l);
+        }
+
+        int m = moveFrom.length;
+        for (int i = 0; i < m; i++) {
+            set.add(moveTo[i]);
+            set.remove(moveFrom[i]);
+        }
+        int[] res = new int[locations.length];
+        int idx = 0;
+        for (int newL : set) {
+            res[idx++] = newL;
+        }
+        Arrays.sort(res);
+        return res;
+    }
+
+    public void testMoveData() {
+        int[] locations = new int[]{1, 5, 2, 6};
+        int[] moveFrom = new int[]{1, 4, 5, 7};
+        int[] moveTo = new int[]{4, 7, 1, 3};
+        int[] res = moveData(locations, moveFrom, moveTo);
+        for (int r : res) {
+            System.out.println(r);
+        }
+    }
 }

@@ -5,6 +5,7 @@ public class Main {
 //        solution.testGetMinTime();
 //        solution.testGetPair();
 //        solution.testCanDeliver();
-        solution.testMaxGreyness();
+//        solution.testMaxGreyness();
+        solution.testMoveData();
     }
 }
