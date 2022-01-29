@@ -6,6 +6,7 @@ public class Main {
 //        solution.testGetPair();
 //        solution.testCanDeliver();
 //        solution.testMaxGreyness();
-        solution.testMoveData();
+//        solution.testMoveData();
+        solution.testSignAPI();
     }
 }

@@ -164,4 +164,57 @@ public class Solution {
             System.out.println(r);
         }
     }
+
+    // sign-in API
+    public String[] signAPI(String[] logs) {
+        HashMap<String, String> users = new HashMap<>();
+        HashSet<String> login = new HashSet<>();
+
+        String[] res = new String[logs.length];
+        for (int i = 0; i < logs.length; i++) {
+            String[] strs = logs[i].split(" ");
+            if (strs.length == 2) {
+                if (login.contains(strs[1])) {
+                    res[i] = "Logged Out Successfully";
+                    login.remove(strs[1]);
+                } else {
+                    res[i] = "Logout Unsuccessful";
+                }
+            } else if (strs[0].equals("register")) {
+                if (users.containsKey(strs[1])) {
+                    res[i] = "Username already exists";
+                } else {
+                    res[i] = "Registered Successfully";
+                    users.put(strs[1], strs[2]);
+                }
+            } else {
+                if (!users.containsKey(strs[1]) || login.contains(strs[1])) {
+                    res[i] = "Login Unsuccessful";
+                } else {
+                    if (users.get(strs[1]).equals(strs[2])) {
+                        res[i] = "Logged In Successful";
+                        login.add(strs[1]);
+                    } else {
+                        res[i] = "Login Unsuccessful";
+                    }
+                }
+            }
+        }
+        return res;
+    }
+
+    public void testSignAPI() {
+        String[] logs = new String[]{
+                "register david david123",
+                "register adam 1Adam1",
+                "login david david123",
+                "login adam 1adam1",
+                "logout david"
+        };
+        String[] res = signAPI(logs);
+        for (String s : res) {
+            System.out.println(s);
+        }
+    }
+
 }
