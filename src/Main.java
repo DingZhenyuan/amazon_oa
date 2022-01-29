@@ -4,6 +4,7 @@ public class Main {
         Solution solution = new Solution();
 //        solution.testGetMinTime();
 //        solution.testGetPair();
-        solution.testCanDeliver();
+//        solution.testCanDeliver();
+        solution.testMaxGreyness();
     }
 }

@@ -96,4 +96,41 @@ public class Solution {
         System.out.println(canDeliver(input1));
         System.out.println(canDeliver(input2));
     }
+
+    // greyness
+    public int maxGreyness(int[][] g) {
+        int m = g.length;
+        int n = g[0].length;
+        int[] rows = new int[m];
+        int[] cols = new int[n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (g[i][j] == 1) {
+                    rows[i]++;
+                    cols[j]++;
+                } else {
+                    rows[i]--;
+                    cols[j]--;
+                }
+            }
+        }
+        int res = Integer.MIN_VALUE;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                int value = rows[i] + cols[j];
+                value += g[i][j] == 1 ? -1 : 1;
+                res = Math.max(value, res);
+            }
+        }
+        return res;
+    }
+
+    public void testMaxGreyness() {
+        int[][] g = new int[][]{
+                {1, 0, 1, 0},
+                {0, 1, 0, 1},
+                {1, 0, 1, 0}
+        };
+        System.out.println(maxGreyness(g));
+    }
 }
