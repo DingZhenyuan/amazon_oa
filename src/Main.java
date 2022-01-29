@@ -10,6 +10,7 @@ public class Main {
 //        solution.testSignAPI();
 //        solution.testMatchWord();
 //        solution.testConstructStr();
-        solution.testMaxSum();
+//        solution.testMaxSum(); // better method?
+        solution.testMinClick();
     }
 }

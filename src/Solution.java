@@ -319,4 +319,42 @@ public class Solution {
         int k = 2;
         System.out.println(maxSum(k, nums));
     }
+
+    // minimal click
+    public int minClick(String text) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < text.length(); i++) {
+            map.put(text.charAt(i), map.getOrDefault(text.charAt(i), 0) + 1);
+        }
+        int n = map.size();
+        int[][] arr = new int[n][2];
+        int idx = 0;
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            arr[idx][0] = (int)(entry.getKey());
+            arr[idx][1] = entry.getValue();
+            idx++;
+        }
+        Arrays.sort(arr, new Comparator<int[]>(){
+            public int compare(int[] a1, int[] a2) {
+                return a2[1] - a1[1];
+            }
+        });
+        int res = 0;
+        for (int i = 0; i < n; i++) {
+            int value = map.get((char)(arr[i][0]));
+            if (i >= 18) {
+                res += value * 3;
+            } else if (i >= 9) {
+                res += value * 2;
+            } else {
+                res += value;
+            }
+        }
+        return res;
+    }
+
+    public void testMinClick() {
+        String str = "abacadefghibj";
+        System.out.println(minClick(str));
+    }
 }
