@@ -217,4 +217,24 @@ public class Solution {
         }
     }
 
+    // match word
+    public int matchWord(String searchWord, String resultWord) {
+        int idx1 = 0;
+        int idx2 = 0;
+        while (idx1 < searchWord.length() && idx2 < resultWord.length()) {
+            if (searchWord.charAt(idx1) == resultWord.charAt(idx2)) {
+                idx1++;
+                idx2++;
+            } else {
+                idx1++;
+            }
+        }
+        return resultWord.length() - idx2;
+    }
+
+    public void testMatchWord() {
+        String searchWord = "armaze";
+        String resultWord = "amazon";
+        System.out.println(matchWord(searchWord, resultWord));
+    }
 }

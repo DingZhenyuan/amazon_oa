@@ -7,6 +7,8 @@ public class Main {
 //        solution.testCanDeliver();
 //        solution.testMaxGreyness();
 //        solution.testMoveData();
-        solution.testSignAPI();
+//        solution.testSignAPI();
+//        solution.testMatchWord();
+
     }
 }
